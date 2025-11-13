@@ -15,7 +15,7 @@ class ExcelLogger_PlateWriter(Block):
             SocketTypes.String('Detected Plate'),
         ]
         self.output_sockets = [
-            SocketTypes.String('Parking Slot Info')  # 🔄 Yeni output eklendi
+            SocketTypes.String('Parking Slot Info')
         ]
 
         self.param['label'] = Label(text='Excel Plate Logger', tooltip='Saves plate and timestamp to Excel')
@@ -50,3 +50,4 @@ class ExcelLogger_PlateWriter(Block):
             self.logError(f"Excel yazma hatası: {e}")
 
 add_block(ExcelLogger_PlateWriter.op_code, ExcelLogger_PlateWriter)
+
