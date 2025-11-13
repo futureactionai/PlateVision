@@ -16,7 +16,7 @@ class PlateReader_PyTesseract(Block):
         self.output_sockets = [
             SocketTypes.ImageAny('Output Image'),
             SocketTypes.String('Detected Texts'),
-            SocketTypes.String('Log Message')  # 👈 Yeni output eklendi
+            SocketTypes.String('Log Message')
         ]
 
         self.param['label'] = Label(text='PyTesseract License Plate Reader', tooltip='OCR-based plate reading')
@@ -62,6 +62,7 @@ class PlateReader_PyTesseract(Block):
 
         self.output['Output Image'].data = img
         self.output['Detected Texts'].data = plate_text
-        self.output['Log Message'].data = log_message  # 👈 Output olarak gönderiyoruz
+        self.output['Log Message'].data = log_message 
 
 add_block(PlateReader_PyTesseract.op_code, PlateReader_PyTesseract)
+
