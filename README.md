@@ -73,6 +73,27 @@ Ensure the custom block references this location or update the path accordingly.
 
 ---
 
+## 4️⃣ Install Required Python Packages
+PlateVision requires two additional Python libraries to run YOLOv8 detection and Excel logging:
+
+📦 Install Ultralytics (YOLOv8)
+
+Used for loading the YOLOv8 license plate detection model.
+```bash
+pip install ultralytics
+```
+
+📦 Install openpyxl
+
+Used for creating and updating the Excel log file.
+```bash
+pip install openpyxl
+```
+
+Make sure these packages are installed in the same Python environment that AugeLab uses.
+
+---
+
 # ⚙️ System Workflow
 
 ## 1. YOLO_PlateDetector  
