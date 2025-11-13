@@ -135,11 +135,5 @@ Replace Excel with:
 
 ---
 
-# 🤝 Contributors
-- **Rumeysa Ispay — Future Action AI**
-- Open-source community
-
----
-
 # 📜 License
 This project is open-source under the **MIT License**.
