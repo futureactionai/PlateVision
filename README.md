@@ -1,6 +1,8 @@
 # 📌 PlateVision — Smart Parking Management System
 **A computer-vision–powered system that detects vehicle license plates, reads them using OCR, and assigns an available parking slot automatically.**
 
+---
+
 ## 🚗 Project Overview
 **PlateVision** is an intelligent parking automation system designed to:
 - Detect vehicle license plates using a YOLOv8 model  
@@ -12,25 +14,20 @@ Built on **AugeLab's custom block architecture**, it includes specialized Python
 
 ---
 
-# 📁 Installation & Directory Structure
+# 📁 Setup
 
 ## 1️⃣ Install Required Custom Blocks
 The project contains three custom AugeLab blocks:
 
-- ExcelLogger_PlateWriter.py
-- PlateReader_PyTesseract.py
-- YOLO_PlateDetector.py
+- `ExcelLogger_PlateWriter.py`
+- `PlateReader_PyTesseract.py`
+- `YOLO_PlateDetector.py`
 
-### 📌 Place these files here:
+### 📌 Place these files in:
 
-### **Windows**
+**Windows:**
 ```
-C:\Users\<USERNAME>\AppData\Local\AugeLab\custom_blocks\
-```
-
-### **Linux**
-```
-~/.local/share/AugeLab/custom_blocks/
+C:\Users\<USERNAME>\AppData\Roaming\AugeLab Studio\marketplace\custom_blocks\
 ```
 
 AugeLab will automatically detect these blocks upon startup.
@@ -38,59 +35,75 @@ AugeLab will automatically detect these blocks upon startup.
 ---
 
 ## 2️⃣ Add YOLO Model Weights
-Download the YOLOv8 model from:
 
+The YOLOv8 model weights are included in this repository.
+
+**File:** `license_plate_detector.pt`
+
+**To download and inspect:**
+```
 https://github.com/Muhammad-Zeerak-Khan/Automatic-License-Plate-Recognition-using-YOLOv8
-
-Place the downloaded file:
-
-```
-license_plate_detector.pt
 ```
 
-Into:
-
+### 📌 Place the model file in:
 ```
-C:\models\PlateVision\license_plate_detector.pt
+C:\models\license_plate_detector.pt
 ```
 
-Make sure to update the path in `YOLO_PlateDetector.py` if needed.
+Make sure to update the path in `YOLO_PlateDetector.py` if you choose a different location.
 
 ---
 
 ## 3️⃣ Install Tesseract OCR
-Windows installer:
 
+**Download from:**
+```
 https://github.com/UB-Mannheim/tesseract/wiki
+```
 
-Default install path:
-
+**Default installation path:**
 ```
 C:\Program Files\Tesseract-OCR\tesseract.exe
 ```
+
+**Important:** After installation, add Tesseract to your system PATH:
+1. Open System Properties → Environment Variables
+2. Edit the `Path` variable
+3. Add: `C:\Program Files\Tesseract-OCR`
+4. Restart your terminal/command prompt
 
 Ensure the custom block references this location or update the path accordingly.
 
 ---
 
 ## 4️⃣ Install Required Python Packages
-PlateVision requires two additional Python libraries to run YOLOv8 detection and Excel logging:
 
-📦 Install Ultralytics (YOLOv8)
+PlateVision requires several Python libraries. Install them using **AugeLab Studio's built-in Python**.
 
-Used for loading the YOLOv8 license plate detection model.
+### Step 1: Install pip (if not already installed)
 ```bash
-pip install ultralytics
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+"C:\Users\<USERNAME>\AppData\Local\Programs\AugeLab Studio\Python\python.exe" get-pip.py
 ```
 
-📦 Install openpyxl
+### Step 2: Install Required Libraries
 
-Used for creating and updating the Excel log file.
+**Install Ultralytics (YOLOv8):**
 ```bash
-pip install openpyxl
+"C:\Users\<USERNAME>\AppData\Local\Programs\AugeLab Studio\Python\python.exe" -m pip install ultralytics
 ```
 
-Make sure these packages are installed in the same Python environment that AugeLab uses.
+**Install openpyxl (Excel logging):**
+```bash
+"C:\Users\<USERNAME>\AppData\Local\Programs\AugeLab Studio\Python\python.exe" -m pip install openpyxl
+```
+
+**Install OpenCV (may be required):**
+```bash
+"C:\Users\<USERNAME>\AppData\Local\Programs\AugeLab Studio\Python\python.exe" -m pip install --force-reinstall opencv-python
+```
+
+> **Alternative:** You can also use AugeLab Studio's **Package Manager** to install these libraries from the interface.
 
 ---
 
@@ -107,32 +120,21 @@ Logs the plate and timestamp into Excel and assigns a parking slot.
 
 ---
 
-# 📁 Recommended Project Structure
+## 📸 Screenshots
 
-```
-PlateVision/
-│
-├── custom_blocks/
-│     ├── ExcelLogger_PlateWriter.py
-│     ├── PlateReader_PyTesseract.py
-│     └── YOLO_PlateDetector.py
-│
-├── models/
-│     └── license_plate_detector.pt
-│
-├── plakalar.xlsx   (auto-generated)
-└── README.md
-```
+![PlateVision Demo](https://github.com/user-attachments/assets/1ffc0587-386e-4750-a9b6-0dabf3ecb43e)
 
 ---
 
 # 🚀 Future Improvements
 
-## 🔧 Improve Plate Accuracy
-- Advanced preprocessing (CLAHE, denoise)
-- Plate segmentation models
-- Regex validation for valid formats
-
+## 🧠 Accuracy & Reliability Enhancements
+- Stability Issues: System may occasionally miss plates or detect multiple ones—needs more robust filtering.
+- Image Quality Sensitivity: OCR accuracy drops in low-light or angled shots.
+- False Positives: Sometimes reads characters wrong due to reflections or plate fonts.
+- Better Preprocessing: Use of CLAHE, bilateral filtering, or HSV transformations.
+- Plate Validation: Apply regex rules to filter out invalid results.
+  
 ## ⚡ Dynamic Architecture
 - Live video support
 - Multi-vehicle tracking (Re-ID)
